@@ -6,6 +6,7 @@ import {getVocabularyList, updateUserProgress} from '../../query/memorize.query'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {VocabularyItem} from "../../interfaces/vocabularyItem.interface";
 import {getColorById} from "../../utils";
+import {useError} from "../../context/errorContext";
 
 interface WordProps {
   word: string | undefined;
@@ -13,6 +14,7 @@ interface WordProps {
 const MemorizeLearn = () => {
   const [list, setList] = useState<VocabularyItem[]>([])
   const [activeItem, setActiveItem] = useState<VocabularyItem>()
+  const {showError} = useError();
 
   useEffect(() => {
     loadVocabularyList();
@@ -41,13 +43,15 @@ const MemorizeLearn = () => {
 
   const truncateList = () => {
     // TODO: remove hardcoded user id
-    updateProgress(activeItem!.id, 1);
-    // TODO: show error in toast message
+    updateProgress(activeItem!.id, 1)
     setList(list => list.slice(1));
   }
 
   const updateProgress = (vocabularyId: number, userId: number): void => {
     updateUserProgress(vocabularyId, userId)
+      .catch(err => {
+        showError(err.error)
+      })
   }
 
   const Word = ({word}: WordProps) => {
