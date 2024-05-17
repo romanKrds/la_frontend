@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import {css} from "@emotion/react";
 import React, {useEffect} from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -19,25 +21,39 @@ const Memorize = () => {
   }, [location, navigate]);
 
   return <>
-    <h2>Memorize component</h2>
+    <div css={wrapperCSS}>
+      <div css={tabsCSS}>
+        {
+          currentTab &&
+          <Tabs
+            value={currentTab}
+            aria-label="nav tabs example"
+            role="navigation"
+          >
+            <Tab label="Memorize" component={Link} value="/memorize/learn" to="/memorize/learn"/>
+            <Tab label="Practise" component={Link} value="/memorize/practise" to="/memorize/practise"/>
+          </Tabs>
+        }
+      </div>
 
-    {
-      currentTab &&
-      <Tabs
-        value={currentTab}
-        aria-label="nav tabs example"
-        role="navigation"
-      >
-        <Tab label="Memorize" component={Link} value="/memorize/learn" to="/memorize/learn"/>
-        <Tab label="Practise" component={Link} value="/memorize/practise" to="/memorize/practise"/>
-      </Tabs>
-    }
-
-    <Routes>
-      <Route path="learn" element={<MemorizeLearn/>}></Route>
-      <Route path="practise" element={<MemorizePractise/>}></Route>
-    </Routes>
+      <div css={contentCSS}>
+        <Routes>
+          <Route path="learn" element={<MemorizeLearn/>}></Route>
+          <Route path="practise" element={<MemorizePractise/>}></Route>
+        </Routes>
+      </div>
+    </div>
   </>
 }
 
 export default Memorize
+
+const wrapperCSS = css({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%'
+})
+const contentCSS = css({
+  flex: 1
+})
+const tabsCSS = css({})
