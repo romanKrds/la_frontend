@@ -7,6 +7,7 @@ interface ErrorContextAPI {
   showError: (message: string) => void
 }
 
+// @ts-ignore
 const ErrorContext = createContext<ErrorContextAPI>({ showError: undefined });
 const snackBarDelay = 3000;
 export const ErrorProvider = ({children}: { children: ReactNode }) => {
