@@ -10,12 +10,17 @@ import App from './App';
 import Memorize from "./components/memorize/memorize";
 import Chat from "./components/chat/chat";
 import Review from "./components/review/review";
+import Login from "./components/login/login";
 
 const router = createBrowserRouter([
   {
     path: "/*",
     element: <App />,
     children: [
+        {
+          path: "login",
+          element: <Login/>
+        },
       {
         path: "memorize/*",
         element: <Memorize/>,
@@ -29,7 +34,7 @@ const router = createBrowserRouter([
         element: <Review/>,
       }
     ]
-  },
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
