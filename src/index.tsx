@@ -7,11 +7,28 @@ import {
 import './index.css';
 
 import App from './App';
+import Memorize from "./components/memorize/memorize";
+import Chat from "./components/chat/chat";
+import Review from "./components/review/review";
 
 const router = createBrowserRouter([
   {
     path: "/*",
     element: <App />,
+    children: [
+      {
+        path: "memorize/*",
+        element: <Memorize/>,
+      },
+      {
+        path: "chat/*",
+        element: <Chat/>,
+      },
+      {
+        path: "review/*",
+        element: <Review/>,
+      }
+    ]
   },
 ]);
 
