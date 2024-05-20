@@ -7,3 +7,14 @@ export const getColorById = (id: number): string => {
 
     return colors[id % colors.length];
   }
+
+export const setToLocalStorage = (data: Record<string, string>) => {
+  for (const key in data) {
+    localStorage.setItem(key, data[key]);
+  }
+}
+
+export const getFromLocalStorage = (key: string): string | null =>
+  localStorage.getItem(key)
+
+export const getAuthToken = (): string | null => getFromLocalStorage('token');

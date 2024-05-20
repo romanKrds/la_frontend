@@ -1,26 +1,31 @@
 /** @jsxImportSource @emotion/react */
 import {css} from "@emotion/react";
-import {Button } from "@mui/material";
+import {Button} from "@mui/material";
 import React, {FormEvent, useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import {useNavigate} from "react-router-dom";
 import {UserCreds} from "../../interfaces/userCreds.interface";
 import {login} from "../../query/auth.query";
 import {useError} from "../../context/errorContext";
+import {setToLocalStorage} from "../../utils";
 
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [formError, setFormError] = useState<Partial<UserCreds>>({})
-  const {showError} = useError()
+  const {showError} = useError();
+  const navigate = useNavigate();
 
   const onSubmitForm = (e: FormEvent) => {
     e.preventDefault();
 
     const data =
     login({username, password})
+      .then(({token}) => setToLocalStorage({token}))
+      .then(() => navigate('/'))
       .catch(({error}) => {
         if (typeof error === 'string') {
           showError(error)

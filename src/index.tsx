@@ -1,37 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import './index.css';
 
 import App from './App';
 import Memorize from "./components/memorize/memorize";
 import Chat from "./components/chat/chat";
 import Review from "./components/review/review";
-import Login from "./components/login/login";
+import Login from "./components/auth/login";
+import Platform from "./components/platform";
 
 const router = createBrowserRouter([
   {
     path: "/*",
-    element: <App />,
+    element: <App/>,
     children: [
-        {
-          path: "login",
-          element: <Login/>
-        },
       {
-        path: "memorize/*",
-        element: <Memorize/>,
+        path: "login",
+        element: <Login/>
       },
       {
-        path: "chat/*",
-        element: <Chat/>,
-      },
-      {
-        path: "review/*",
-        element: <Review/>,
+        path: '',
+        element: <Platform/>,
+        children: [
+          {
+            path: "memorize/*",
+            element: <Memorize/>,
+          },
+          {
+            path: "chat/*",
+            element: <Chat/>,
+          },
+          {
+            path: "review/*",
+            element: <Review/>,
+          }
+        ],
       }
     ]
   }
@@ -40,6 +44,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );

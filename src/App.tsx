@@ -4,7 +4,6 @@ import {ErrorProvider} from './context/errorContext'
 import {Outlet, useLocation, useNavigate} from 'react-router-dom';
 
 const App = () => {
-  const [value, setValue] = React.useState(0);
   const location = useLocation();
   const navigate = useNavigate();
 

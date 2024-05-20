@@ -7,4 +7,3 @@ interface LoginResponse {
 
 export const login = (data: UserCreds): Promise<LoginResponse> =>
   patchedFetch(`${process.env.REACT_APP_API_URL}/auth/login`, {method: 'POST', body: JSON.stringify(data)})
-  .then(resp => resp)

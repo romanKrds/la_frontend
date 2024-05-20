@@ -2,11 +2,12 @@
 import {css} from "@emotion/react";
 import Button from "@mui/material/Button";
 import React, {useEffect, useState} from "react";
-import {getVocabularyList, updateUserProgress} from '../../query/memorize.query'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import {getVocabularyList, updateUserProgress} from '../../query/memorize.query'
 import {VocabularyItem} from "../../interfaces/vocabularyItem.interface";
 import {getColorById} from "../../utils";
 import {useError} from "../../context/errorContext";
+import {useUser} from "../../context/userContext";
 
 interface WordProps {
   word: string | undefined;
@@ -15,19 +16,27 @@ const MemorizeLearn = () => {
   const [list, setList] = useState<VocabularyItem[]>([])
   const [activeItem, setActiveItem] = useState<VocabularyItem>()
   const {showError} = useError();
+  const {user} = useUser();
 
   useEffect(() => {
     loadVocabularyList();
   }, []);
 
   useEffect(() => {
-    setActive();
+    if (list.length) {
+      setActive();
+    }
   }, [list]);
 
   const loadVocabularyList = () => {
     getVocabularyList()
       .then(list => {
         setList(list)
+      })
+      .catch(err => {
+        if (typeof err === 'string') {
+          showError(err);
+        }
       })
   }
 
@@ -42,8 +51,7 @@ const MemorizeLearn = () => {
   }
 
   const truncateList = () => {
-    // TODO: remove hardcoded user id
-    updateProgress(activeItem!.id, 1)
+    updateProgress(activeItem!.id, user!.id);
     setList(list => list.slice(1));
   }
 
