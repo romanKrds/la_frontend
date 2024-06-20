@@ -15,22 +15,18 @@ interface WordProps {
 const MemorizeLearn = () => {
   const [list, setList] = useState<VocabularyItem[]>([])
   const [activeItem, setActiveItem] = useState<VocabularyItem>()
+  const [hasItemsToMemorize, setHasItemsToMemorize] = useState<boolean>(true);
   const {showError} = useError();
   const {user} = useUser();
 
   useEffect(() => {
-    loadVocabularyList();
-  }, []);
-
-  useEffect(() => {
-    if (list.length) {
       setActive();
-    }
   }, [list]);
 
   const loadVocabularyList = () => {
     getVocabularyList()
       .then(list => {
+        setHasItemsToMemorize(!!list.length);
         setList(list)
       })
       .catch(err => {
@@ -41,7 +37,7 @@ const MemorizeLearn = () => {
   }
 
   const setActive = () => {
-    if (!list.length) {
+    if (!list.length && hasItemsToMemorize) {
       loadVocabularyList();
 
       return;
@@ -124,7 +120,7 @@ const wordCSS = css({
 const sentenceCSS = css({
   fontSize: '1.5rem',
   color: 'grey',
-  paddingLeft: '2rem'
+  textAlign: 'center'
 })
 
 const actionsWrapperCSS = css({

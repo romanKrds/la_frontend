@@ -28,7 +28,8 @@ const Memorize = () => {
           currentTab &&
             <Tabs
                 value={currentTab}
-                aria-label="nav tabs example"
+                aria-label="switch between memorize and practise tabs"
+                variant="fullWidth"
                 role="navigation"
             >
                 <Tab label="Learn" component={Link} value="/memorize/learn" to="learn"/>

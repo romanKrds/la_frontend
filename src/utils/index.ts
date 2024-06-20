@@ -18,3 +18,15 @@ export const getFromLocalStorage = (key: string): string | null =>
   localStorage.getItem(key)
 
 export const getAuthToken = (): string | null => getFromLocalStorage('token');
+
+
+export const randomNumber = (ceil: number) => Math.floor(Math.random() * (ceil + 1))
+
+export const shuffleArray = <T>(array: T[]): T[] => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = randomNumber(i); // random index from 0 to i
+        [array[i], array[j]] = [array[j], array[i]]; // swap elements
+    }
+
+    return array;
+}
