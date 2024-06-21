@@ -14,13 +14,12 @@ import { VocabularyItem } from "../../interfaces/vocabularyItem.interface";
 import { getVocabularyStudiedList, updateUserProgress } from "../../query/memorize.query";
 import { randomNumber, shuffleArray } from "../../utils";
 
-interface Answer {
+export interface Answer {
   id: number;
   label: string;
   isSelected: boolean;
 }
-
-interface VocabularyStudiedItem extends VocabularyItem {
+export interface VocabularyStudiedItem extends VocabularyItem {
   challenge: string
 }
 
