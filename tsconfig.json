@@ -8,6 +8,6 @@
     "jsx": "react",
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "includes": ["custom.d.ts"],
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react/types/css-prop", "@types/jest", "@types/lodash"]
   }
 }
