@@ -1,6 +1,18 @@
-# LA Frontend
+# Language acquisition (front-end)
 
-LA Frontend is a web application dedicated to language acquisition. It is built using React.js and Material-UI.
+This web application is specifically designed for language learning. It has been developed using React.js and utilizes Material-UI for its user interface design.
+
+<table style="width: 100%;" bgcolor="#f0f0f0">
+    <tr>
+        <td style="text-align: center;">
+            <img src="./learn_words.png" alt="algoria quest logo" height="400"/>
+        </td>
+        <td style="width: 20px; background-color: #f0f0f0;"></td>
+        <td style="text-align: center;">
+            <img src="./vocabullary_challenge.png" alt="algoria quest logo" height="400"/>
+        </td>
+    </tr>
+</table>
 
 ## Getting Started
 
