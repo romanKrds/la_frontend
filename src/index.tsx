@@ -9,6 +9,7 @@ import Chat from "./components/chat/chat";
 import Review from "./components/review/review";
 import Login from "./components/auth/login";
 import Platform from "./components/platform";
+import Register from './components/auth/register';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login/>
+      },
+      {
+        path: "register",
+        element: <Register/>
       },
       {
         path: '',
