@@ -7,9 +7,9 @@ import App from './App';
 import Memorize from "./components/memorize/memorize";
 import Chat from "./components/chat/chat";
 import Review from "./components/review/review";
-import Login from "./components/auth/login";
+import Login from "./components/auth/Login";
 import Platform from "./components/platform";
-import Register from './components/auth/register';
+import Register from './components/auth/Register';
 
 const router = createBrowserRouter([
   {
